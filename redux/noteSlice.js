@@ -29,6 +29,10 @@ export const noteSlice = createSlice({
         editNote(state, action) {
             const idx = state.notes.findIndex(s => s.id === action.payload.id);
             state.notes[idx] = action.payload;
+        },
+        resetAll(state, action) {
+            state.notes = [];
+            state.favorites = [];
         }
     }
 })

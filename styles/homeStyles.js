@@ -51,7 +51,7 @@ export const homeStyles = StyleSheet.create({
         paddingHorizontal: 15
     },
     submitBtn: {
-        backgroundColor: '#000',
+        backgroundColor: '#0d78f2',
         textAlign: 'center',
         color: 'white',
         width: '100%',

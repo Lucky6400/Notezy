@@ -12,8 +12,9 @@ import { AntDesign } from '@expo/vector-icons';
 import SelectDropdown from 'react-native-select-dropdown'
 import { categoriesData } from "../data/categories";
 import { noteColors } from "../data/noteColors";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { noteAction } from "../redux/noteSlice";
+import { textColor } from "../utils/theme";
 
 const actionArray = [
     actions.setBold,
@@ -135,6 +136,7 @@ const AddNote = ({ navigation, params }) => {
     const [title, setTitle] = React.useState(params?.item?.title || "");
     const [currHtml, setCurrHtml] = React.useState(params?.item?.html || ``);
     // console.log(params)
+    const mode = useSelector(s => s.settings.mode);
     const dispatch = useDispatch()
 
     const handleSubmit = () => {
@@ -181,12 +183,13 @@ const AddNote = ({ navigation, params }) => {
             />
             <ScrollView
                 contentContainerStyle={{
-                    width: '90%',
-                    marginLeft: '5%',
-                    paddingBottom: 300
+                    width: '100%',
+                    padding: '5%',
+                    paddingBottom: 300,
+                    backgroundColor: mode === "dark" ? "#000" : "transparent"
                 }}
             >
-                <Text style={homeStyles.addNoteHeading}>{params?.isEditing ? "Update" : "Add"} Note:</Text>
+                <Text style={{ ...homeStyles.addNoteHeading, color: textColor[mode] }}>{params?.isEditing ? "Update" : "Add"} Note:</Text>
 
                 <TextInput value={title} onChangeText={(e) => setTitle(e)} placeholder="Title" style={homeStyles.input} />
 
@@ -205,7 +208,7 @@ const AddNote = ({ navigation, params }) => {
                 </KeyboardAvoidingView>
 
                 <SelectDropdown
-                    data={categoriesData}
+                    data={categoriesData.slice(1)}
                     defaultButtonText={category || "Select Category"}
 
                     onSelect={(selectedItem) => {
@@ -234,7 +237,7 @@ const AddNote = ({ navigation, params }) => {
                         onPress={() => setSelColor(color)}
                         key={index + color} style={{
                             width: 40, height: 40, backgroundColor: color, margin: 10,
-                            borderWidth: selColor === color ? 1 : 0, borderColor: 'black'
+                            borderWidth: selColor === color ? 2 : 0, borderColor: textColor[mode]
                         }}></TouchableOpacity>))}
 
                 </ScrollView>

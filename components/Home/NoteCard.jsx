@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux'
 import { noteAction } from '../../redux/noteSlice';
 
-const NoteCard = ({ item, navigation }) => {
+const NoteCard = ({ item, navigation, onFavScreen }) => {
     const dispatch = useDispatch();
     const source = {
         html: item.html
@@ -45,17 +45,23 @@ const NoteCard = ({ item, navigation }) => {
                     <AntDesign name="eye" size={24} color="black" />
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    onPress={() => {
-                        if (item.isFavourite) {
-                            dispatch(noteAction.removeFromFavorite(item))
-                        } else {
-                            dispatch(noteAction.addToFavorite(item))
-                        }
-                    }}
-                    style={{ ...homeStyles.cardBtn }}>
-                    {item.isFavourite ? <AntDesign name="heart" size={24} color="black" /> : <AntDesign name="hearto" size={24} color="black" />}
-                </TouchableOpacity>
+                {!onFavScreen ?
+                    <TouchableOpacity
+                        onPress={() => {
+                            if (item.isFavourite) {
+                                dispatch(noteAction.removeFromFavorite(item))
+                            } else {
+                                dispatch(noteAction.addToFavorite(item))
+                            }
+                        }}
+                        style={{ ...homeStyles.cardBtn }}>
+                        {item.isFavourite ? <AntDesign name="heart" size={24} color="black" /> : <AntDesign name="hearto" size={24} color="black" />}
+                    </TouchableOpacity>
+                    :
+                    <></>}
+
+
+
                 <TouchableOpacity onPress={() => {
                     dispatch(noteAction.deleteNote({ id: item.id }))
                 }} style={{ ...homeStyles.cardBtn }}>

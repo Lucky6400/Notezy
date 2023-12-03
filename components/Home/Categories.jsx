@@ -10,7 +10,7 @@ const Categories = ({ sel, setSel }) => {
             {categoriesData.map((cat, i) => (
                 <TouchableOpacity
                     onPress={() => setSel(cat)}
-                    key={i + cat} style={{ ...homeStyles.catBtn, backgroundColor: sel === cat ? "black" : '#dbdbdb' }}>
+                    key={i + cat} style={{ ...homeStyles.catBtn, backgroundColor: sel === cat ? "#0d78f2" : '#dbdbdb' }}>
                     <Text style={{ color: sel === cat ? "white" : 'black' }}>
                         {cat || "All"}
                     </Text>

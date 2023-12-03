@@ -19,7 +19,11 @@ const Bottom = ({ navigation }) => {
             </View>
 
             <View style={homeStyles.bottomBtnCont}>
-                <TouchableOpacity style={homeStyles.bottomBtn}>
+                <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate("Settings")
+                }}
+                style={homeStyles.bottomBtn}>
                     <Ionicons name="ios-settings-outline" size={24} color="white" />
                 </TouchableOpacity>
             </View>
