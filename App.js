@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import 'react-native-gesture-handler';
 import SingleNoteScreen from './screens/SingleNoteScreen';
+import FavouriteNotes from './screens/FavouriteNotes';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,8 +35,10 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen options={{
               headerTitle: () => <Text style={{ fontFamily: 'Poppins_600SemiBold', fontSize: 24 }}>Notezy</Text>,
+
             }} name="Home" component={HomeScreen} />
-            <Stack.Screen name="AddNote" component={AddNoteScreen} />
+            <Stack.Screen options={{ headerTitle: "" }} name="AddNote" component={AddNoteScreen} />
+            <Stack.Screen name="Favourites" component={FavouriteNotes} />
             <Stack.Screen options={{
               headerTitle: () => <Text style={{ fontFamily: 'Poppins_600SemiBold', fontSize: 18 }}>View Note</Text>,
             }} name="SingleNote" component={SingleNoteScreen} />

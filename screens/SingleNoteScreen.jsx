@@ -15,14 +15,38 @@ const SingleNoteScreen = (props) => {
     };
     const { width, height } = useWindowDimensions();
 
-    if(!item) return <></>;
+    if (!item) return <></>;
 
     return (
         <ScrollView contentContainerStyle={{ backgroundColor: '#FFF', padding: 10 }}>
 
-            <Text style={{ fontFamily: 'Poppins_600SemiBold', fontSize: 24 }}>{item.title}</Text>
-            <View style={{ flexDirection: 'row' }}>
+            <Text style={homeStyles.titleCont}>{item.title}</Text>
+            <View style={homeStyles.catCont}>
                 <Text style={homeStyles.singlenoteCatbtn}>{item.category || "No Category"}</Text>
+
+                <View style={{ flexDirection: 'row', gap: 10 }}>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            if (item.isFavourite) {
+                                dispatch(noteAction.removeFromFavorite(item))
+                                setItem(p => ({ ...p, isFavourite: false }))
+                            } else {
+                                dispatch(noteAction.addToFavorite(item))
+                                setItem(p => ({ ...p, isFavourite: true }))
+                            }
+                        }}
+                        style={{ ...homeStyles.cardBtn, borderWidth: 1 }}>
+                        {item.isFavourite ? <AntDesign name="heart" size={24} color="black" /> : <AntDesign name="hearto" size={24} color="black" />}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        dispatch(noteAction.deleteNote({ id: item.id }));
+                        props.navigation.navigate("Home");
+                    }} style={{ ...homeStyles.cardBtn, borderWidth: 1 }}>
+                        <AntDesign name="delete" size={24} color="black" />
+                    </TouchableOpacity>
+                </View>
+
             </View>
 
             <View style={{ paddingVertical: 40, minHeight: height }}>
@@ -32,28 +56,7 @@ const SingleNoteScreen = (props) => {
                 />
             </View>
 
-            <View style={{ position: 'absolute', top: height - 120, right: 20, flexDirection: 'row', gap: 10 }}>
 
-                <TouchableOpacity
-                    onPress={() => {
-                        if (item.isFavourite) {
-                            dispatch(noteAction.removeFromFavorite(item))
-                            setItem(p => ({ ...p, isFavourite: false }))
-                        } else {
-                            dispatch(noteAction.addToFavorite(item))
-                            setItem(p => ({ ...p, isFavourite: true }))
-                        }
-                    }}
-                    style={{ ...homeStyles.cardBtn, borderWidth: 1 }}>
-                    {item.isFavourite ? <AntDesign name="heart" size={24} color="black" /> : <AntDesign name="hearto" size={24} color="black" />}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
-                    dispatch(noteAction.deleteNote({ id: item.id }));
-                    props.navigation.navigate("Home");
-                }} style={{ ...homeStyles.cardBtn, borderWidth: 1 }}>
-                    <AntDesign name="delete" size={24} color="black" />
-                </TouchableOpacity>
-            </View>
         </ScrollView>
     )
 }

@@ -7,20 +7,29 @@ import { useSelector } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { getTimeOfDay } from '../utils/greeting';
+import { Feather } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+const greetingIcon = {
+    "morning": <Feather style={{ padding: 10 }} name="sunrise" size={32} color="#ffb300" />,
+    "afternoon": <MaterialIcons style={{ padding: 10 }} name="wb-sunny" size={32} color="#f2d00d" />,
+    "evening": <MaterialCommunityIcons style={{ padding: 10 }} name="weather-night" size={32} color="#267ad9" />
+}
 
 const HomeScreen = ({ navigation }) => {
     const notes = useSelector(s => s.noteReducer.notes)
-    const [sel, setSel] = useState("")
+    const [sel, setSel] = useState("");
+
     return (
         <View style={{ height: '100%', position: 'relative', backgroundColor: '#FFFFFF' }}>
-            <MaterialIcons style={{ padding: 10 }} name="wb-sunny" size={32} color="orange" />
+            {greetingIcon[getTimeOfDay()]}
             <Text style={{ fontSize: 24, paddingHorizontal: 10, fontWeight: '500', marginBottom: 10 }}>
                 Good {getTimeOfDay()}, Lucky!
             </Text>
             <View>
                 <Categories sel={sel} setSel={setSel} />
             </View>
-            <ScrollView contentContainerStyle={{ backgroundColor: '#FFFFFF' }}>
+            <ScrollView contentContainerStyle={{ backgroundColor: '#FFFFFF', paddingBottom: 300 }}>
 
                 {notes && notes.filter(note => note.category.includes(sel)).length > 0 ?
                     notes.filter(note => note.category.includes(sel)).map((item, index) => (<NoteCard item={item} navigation={navigation} key={item?.id} />))

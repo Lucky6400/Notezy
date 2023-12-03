@@ -39,8 +39,8 @@ export const homeStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "center",
     },
-    bottomBtnCont: { backgroundColor: '#000', width: 80, height: 80, borderRadius: 40, alignItems: 'center', justifyContent: 'center', zIndex: 20 },
-    bottomCont: { position: 'absolute', bottom: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', width: '100%', gap: 10, paddingRight: 20 },
+    bottomBtnCont: { backgroundColor: '#000', width: 80, height: 80, borderRadius: 0, alignItems: 'center', justifyContent: 'center', zIndex: 20 },
+    bottomCont: { position: 'absolute', bottom: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%', gap: 0, paddingRight: 0 },
     bottomBtn: { backgroundColor: '#aaaaaa', width: 60, height: 60, borderRadius: 30, alignItems: 'center', justifyContent: 'center' },
     input: {
         backgroundColor: '#FFFFFF',
@@ -60,5 +60,7 @@ export const homeStyles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 30
     },
-    singlenoteCatbtn: { fontFamily: 'Poppins_400Regular', color: '#FFF', backgroundColor: '#000', padding: 10, borderRadius: 10 }
+    singlenoteCatbtn: { fontFamily: 'Poppins_400Regular', color: '#FFF', backgroundColor: '#000', padding: 10, borderRadius: 10 },
+    catCont: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+    titleCont: { fontFamily: 'Poppins_600SemiBold', fontSize: 24 }
 })

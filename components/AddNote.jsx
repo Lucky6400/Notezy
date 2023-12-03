@@ -32,7 +32,6 @@ const actionArray = [
     actions.alignFull,
     actions.insertBulletsList,
     actions.insertOrderedList,
-    actions.checkboxList,
     actions.insertLink,
     actions.setSubscript,
     actions.setSuperscript,
@@ -40,93 +39,92 @@ const actionArray = [
     actions.undo,
     actions.redo,
     actions.code,
-    actions.table,
     actions.line,
     // actions.hiliteColor,
     // actions.keyboard,
-    // actions.setTextColor,
+    actions.setTextColor,
     // actions.setBackgroundColor
 ];
 
 const iconMap = {
-    [actions.setBold]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Foundation name="bold" size={16} color={isActive ? "black" : tintColor} />
+    [actions.setBold]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Foundation name="bold" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.setItalic]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="format-italic" size={16} color={isActive ? "black" : tintColor} />
+    [actions.setItalic]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="format-italic" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.setUnderline]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="format-underline" size={16} color={isActive ? "black" : tintColor} />
+    [actions.setUnderline]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="format-underline" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.heading1]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>H1</Text>,
-    [actions.heading2]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>H2</Text>,
-    [actions.heading3]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>H3</Text>,
-    [actions.heading4]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>H4</Text>,
-    [actions.heading5]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>H5</Text>,
-    [actions.heading6]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>H6</Text>,
-    [actions.removeFormat]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="format-clear" size={16} color={isActive ? "black" : tintColor} />
+    [actions.heading1]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor, fontSize: 24 }}>H1</Text>,
+    [actions.heading2]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor, fontSize: 24 }}>H2</Text>,
+    [actions.heading3]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor, fontSize: 24 }}>H3</Text>,
+    [actions.heading4]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor, fontSize: 24 }}>H4</Text>,
+    [actions.heading5]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor, fontSize: 24 }}>H5</Text>,
+    [actions.heading6]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor, fontSize: 24 }}>H6</Text>,
+    [actions.removeFormat]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="format-clear" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.alignLeft]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Feather name="align-left" size={16} color={isActive ? "black" : tintColor} />
+    [actions.alignLeft]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Feather name="align-left" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.alignCenter]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Feather name="align-center" size={16} color={isActive ? "black" : tintColor} />
+    [actions.alignCenter]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Feather name="align-center" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.alignRight]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Feather name="align-right" size={16} color={isActive ? "black" : tintColor} />
+    [actions.alignRight]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Feather name="align-right" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.alignFull]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Feather name="align-justify" size={16} color={isActive ? "black" : tintColor} />
+    [actions.alignFull]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Feather name="align-justify" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.insertBulletsList]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="format-list-bulleted" size={16} color={isActive ? "black" : tintColor} />
+    [actions.insertBulletsList]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="format-list-bulleted" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.insertOrderedList]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Octicons name="list-ordered" size={16} color={isActive ? "black" : tintColor} />
+    [actions.insertOrderedList]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Octicons name="list-ordered" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.checkboxList]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Octicons name="checklist" size={16} color={isActive ? "black" : tintColor} />
+    [actions.checkboxList]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Octicons name="checklist" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
-    [actions.insertLink]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Entypo name="link" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-
-    [actions.insertImage]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="insert-photo" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-    [actions.setSubscript]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="subscript" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-    [actions.setSuperscript]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="superscript" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-    [actions.setStrikethrough]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="format-strikethrough" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-    [actions.undo]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}><MaterialIcons name="undo" size={16} color={isActive ? "black" : tintColor} /></Text>,
-    [actions.redo]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialIcons name="redo" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-    [actions.code]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Entypo name="code" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-    [actions.table]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <MaterialCommunityIcons name="table" size={16} color={isActive ? "black" : tintColor} />
-    </Text>,
-    [actions.line]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-        <Octicons name="horizontal-rule" size={16} color={isActive ? "black" : tintColor} />
+    [actions.insertLink]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Entypo name="link" size={24} color={isActive ? "white" : tintColor} />
     </Text>,
 
-    // [actions.hiliteColor]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-    //     <Ionicons name="color-fill" size={16} color={isActive ? "black" : tintColor} />
+    [actions.insertImage]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="insert-photo" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    [actions.setSubscript]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="subscript" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    [actions.setSuperscript]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="superscript" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    [actions.setStrikethrough]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="format-strikethrough" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    [actions.undo]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}><MaterialIcons name="undo" size={24} color={isActive ? "white" : tintColor} /></Text>,
+    [actions.redo]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialIcons name="redo" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    [actions.code]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Entypo name="code" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    [actions.table]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <MaterialCommunityIcons name="table" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    [actions.line]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Octicons name="horizontal-rule" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+
+    // [actions.hiliteColor]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+    //     <Ionicons name="color-fill" size={24} color={isActive ? "white" : tintColor} />
     // </Text>,
 
-    // [actions.setTextColor]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-    //     <Foundation name="text-color" size={16} color={isActive ? "black" : tintColor} />
-    // </Text>,
-    // [actions.setBackgroundColor]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "black" : tintColor, paddingLeft: 10 }}>
-    //     <Foundation name="background-color" size={16} color={isActive ? "black" : tintColor} />
+    [actions.setTextColor]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+        <Foundation name="text-color" size={24} color={isActive ? "white" : tintColor} />
+    </Text>,
+    // [actions.setBackgroundColor]: ({ tintColor, isActive }) => <Text style={{ color: isActive ? "white" : tintColor }}>
+    //     <Foundation name="background-color" size={24} color={isActive ? "white" : tintColor} />
     // </Text>
 };
 
@@ -136,11 +134,15 @@ const AddNote = ({ navigation, params }) => {
     const [category, setCategory] = React.useState(params?.item?.category || "");
     const [title, setTitle] = React.useState(params?.item?.title || "");
     const [currHtml, setCurrHtml] = React.useState(params?.item?.html || ``);
-    console.log(params)
+    // console.log(params)
     const dispatch = useDispatch()
 
     const handleSubmit = () => {
         try {
+            if (!title || !currHtml) {
+                Alert.alert("Please fill all details!");
+                return null;
+            }
             const payload = {
                 title, html: currHtml, category, color: selColor, isFavourite: false, id: params?.isEditing ? params.item.id : Date.now()
             }
@@ -157,22 +159,39 @@ const AddNote = ({ navigation, params }) => {
 
     return (
         <SafeAreaView>
+            <RichToolbar
+                style={{
+                    height: 60
+                }}
+                iconTint="#000"
+                selectedIconTint="#FFF"
+                unselectedButtonStyle={{
+                    width: 60,
+                    height: 60,
+                    backgroundColor: '#FFFFFF'
+                }}
+                selectedButtonStyle={{
+                    width: 60,
+                    height: 60,
+                    backgroundColor: '#000'
+                }}
+                editor={richText}
+                actions={actionArray}
+                iconMap={iconMap}
+            />
             <ScrollView
                 contentContainerStyle={{
                     width: '90%',
-                    marginLeft: '5%'
+                    marginLeft: '5%',
+                    paddingBottom: 300
                 }}
             >
-                <Text style={homeStyles.addNoteHeading}>Add Note:</Text>
+                <Text style={homeStyles.addNoteHeading}>{params?.isEditing ? "Update" : "Add"} Note:</Text>
 
                 <TextInput value={title} onChangeText={(e) => setTitle(e)} placeholder="Title" style={homeStyles.input} />
 
                 <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1, borderColor: '#eeeeee', borderWidth: 1, borderRadius: 15, overflow: 'hidden' }}>
-                    <RichToolbar
-                        editor={richText}
-                        actions={actionArray}
-                        iconMap={iconMap}
-                    />
+
 
                     <RichEditor
                         placeholder="Write something here..."
@@ -192,7 +211,7 @@ const AddNote = ({ navigation, params }) => {
                     onSelect={(selectedItem) => {
                         setCategory(selectedItem)
                     }}
-                    renderDropdownIcon={() => <AntDesign name="downcircle" size={16} color="black" />}
+                    renderDropdownIcon={() => <AntDesign name="downcircle" size={24} color="black" />}
                     buttonTextAfterSelection={(selectedItem, index) => {
                         return selectedItem
                     }}
